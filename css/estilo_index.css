@@ -18,6 +18,19 @@ body{
     background: rgba(0, 0, 0, 0.459);
     height: 520px;
 }
+#cuerpo_vuelos_registrados{
+    position: static;
+    margin-top: 76px;
+    background: rgba(0, 0, 0, 0.459);
+    height: 520px;
+}
+#acerca_de{
+    position: static;
+    margin-top: 76px;
+    background: rgba(0, 0, 0, 0.856);
+    height: 520px;
+    display: none;
+}
 #titulo_avion_nuevo{
     color: white;
     font-weight: bold;
@@ -50,6 +63,13 @@ form{
     width: 40px;
     display: inline-block;
 }
+#boton_cerrar_mision{
+    background: rgb(253, 253, 253);
+    height: 30px;
+    margin-left: 0;
+    width: 40px;
+    display: inline-block;
+}
 .nombres_labels{
     color: white;
 }
@@ -78,9 +98,16 @@ a .portada{
     display: none;
 }
 #cuerpo_nuevo_pasajero{
-    display: show;
+    display: none;
+}
+#cuerpo_vuelos_registrados{
+    display: none;
 }
 hr {
     height: 10px;
     background-color: black;
   }
+
+#espacio_vision{
+    margin-top: -15px;
+}

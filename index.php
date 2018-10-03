@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/menuEstilos.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="RelojEstilos.css">
 </head>
 <body>
     <header id="header">
@@ -27,16 +28,41 @@
 
             <div class="enlaces" id="enlaces">
                 <a href="#" onclick="inicio()"> <i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
-                <a href="#"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Acerca de</a>
+                <a href="#" onclick="acerca_de()"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Acerca de</a>
                 <a href="#" onclick="nuevo_pasajero()"> <i class="fa fa-users" aria-hidden="true"></i> Pasajeros</a>
                 <a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>
-                <a href="#"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a>
-                <a href="#"> <i class="fa fa-envelope-o" aria-hidden="true"></i> Contacto</a>
+                <a href="#" onclick="vuelos_registrados()"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a>                
             </div>
 
         </nav>
     </header>
 
+    <!-- RELOJ -->
+    <div class="wrap" style="margin-top:80px;margin-left:-10px"> <!--Sirve para centrar el reloj Horizontalmente-->
+        <div class="widget">
+
+            <div class="fecha">
+                <p id="diaSemana" class="diaSemana"></p>
+                <p id="dia" class="dia"></p>
+                <p>de</p>
+                <p id="mes" class="mes"></p>
+                <p>del</p>
+                <p id="year" class="year"></p>
+            </div>
+                   
+            <div class="reloj">
+                <p id="horas" class="horas"></p>
+                    <p>:</p>
+                    <p id="minutos" class="minutos"></p>
+                    <p>:</p>
+                    <div class="caja-segundos">
+                        <p id="ampm" class="ampm"></p>
+                        <p id="segundos" class="segundos"></p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- RELOJ -->
 
     <div class="container-fluid"> 
         <!--GUARDAR NUEVO AVION -->
@@ -222,10 +248,108 @@
 
         </div> 
 
+        <!--VUELOS REGISTRADOS -->
+        <div class="col-lg-12" id="cuerpo_vuelos_registrados">
+            <div class="row ">
+                <div class="col-lg-2" id="fondo_datos_registros">
+                    <div id="boton_cerrar" onclick="cerrar_new_avion()" >
+                        <div class="input-group-addon" style="cursor:pointer">
+                            <b> X </b> 
+                        </div>
+                    </div>
+                                        
+
+                    <div class="table-responsive scrollable " style="border-radius:5px" id="tabla_vocal">
+                        <table class="table table-striped table-bordered table-hover table-condensed">                        
+                            <tr class="success">
+                                <th style="text-align:center">AVIONES REGISTRADOS</th>                            
+                            </tr>
+                            <tr style="cursor:pointer"><td>A</td></tr>
+                            <tr><td>B</td></tr>
+                            <tr><td>C</td></tr>
+                            <tr><td>D</td></tr>
+                            <!-- CODIGO PHP-->
+                            
+                        </table>               
+                    </div>
+                </div>  
+                  <!-- DATOS DE PASAJEROS REGISTRADOS EN EL AVION-->
+                  <br>
+                <div class="col-lg-10" id="img_avion">
+                    <div class="table-responsive scrollable " style="border-radius:5px" id="tabla_vocal">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            
+                            <tr class="success">                                
+                                <th style="text-align:center">NOMBRE</th>
+                                <th style="text-align:center">APELLIDO</th>                            
+                                <th style="text-align:center">DOCUMENTO</th>
+                                <th style="text-align:center">No. DOCUMENTO</th>
+                                <th style="text-align:center">TELEFONO</th>
+                                <th style="text-align:center">FECHA NACIMIENTO</th>
+                                <th style="text-align:center">DIRECCION</th>
+                                <th style="text-align:center">VIAJAR A</th>
+                                <th style="text-align:center">FECHA DE VIAJE</th>
+                                <th style="text-align:center">HORA DE VIAJE</th>
+
+                            </tr>
+                            <!-- CODIGO PHP-->
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div> 
+
+        <!--MISION VISION Y VALORES -->
+        <div class="col-lg-12" id="acerca_de">
+            <div class="row ">
+            <div id="boton_cerrar_mision" onclick="cerrar_new_avion()" >
+                <div class="input-group-addon" style="cursor:pointer">
+                    <b> X </b> 
+                </div>
+            </div>
+
+                <h2 id="espacio_vision" style="text-align:center; color:white">MISIÓN, VISIÓN Y VALORES</h2>
+                <hr>
+
+                <div style="text-align:center; color:white;text-align:justify" class="col-lg-4" id="fondo_datos_registros">                
+                    <table>
+                        <tr>
+                            <td>Aeropuerto "Viaje Seguro"</td>
+                        </tr>
+                        <tr><td>6ª calle Entrada Villas El Kiosko </td></tr>
+                        <tr><td>Tel. (502) 7571 3646</td></tr>
+                        <tr><td>Tel. (502) 7751 9846</td></tr>
+                        <tr><td>viajeseguro95@gmail.com</td></tr>
+                    </table> <br><br>
+
+                    <h4 style="text-align:center">MISIÓN</h4> <br>
+                    Aeropuerto "Viaje Seguro" Internacional comparte la visión de su matriz: ser una empresa líder y un referente en el sector de la gestión de infraestructuras aeroportuarias en el ámbito mundial.
+
+                    Participar y tener una fuerte presencia en el mercado internacional de prestación de servicios en operaciones aeroportuarias es la contribución de Vuelos Internacional al grupo.
+                </div>                    
+                
+                <div style="text-align:center; color:white;text-align:justify" class="col-lg-4" id="">
+                    <h4 style="text-align:center">VISIÓN</h4> <br>
+                    <p>La misión de "Viaje Seguro" Internacional se orienta hacia dos objetivos principales:</p>
+                    <p>Incrementar la presencia internacional de "Viaje Seguro" como operador global de infraestructuras aeronáuticas, proporcionando servicios de gestión de aeropuertos con seguridad, eficacia, eficiencia y respeto al medio ambiente, buscando siempre la rentabilidad en cada una de las operaciones.</p>                
+                    <p>Favorecer la presencia empresarial e institucional española en el ámbito internacional.</p>
+                    <p>Con estos objetivos "Viaje Seguro"  Internacional concurre a licitaciones para gestionar y operar infraestructuras aeroportuarias en diferentes lugares del mundo, con una especial vocación hacia aquéllas que se desarrollan en América Latina y Europa pero sin perder de vista los mercados emergentes como Oriente Medio o Asia.</p>
+                </div>
+
+                <div style="text-align:center; color:white;text-align:justify" class="col-lg-4" id="">
+                    <h4 style="text-align:center">VALORES</h4>  <br>
+                    <p>"Viaje Seguro" Internacional desarrolla sus proyectos basándose en sus valores de experiencia y conocimiento en el sector aeronáutico, su compromiso en la optimización de servicios de calidad y consiguiendo la confianza de sus socios, clientes e instituciones de su área de influencia.</p>               
+                </div>
+
+            </div>
+
+        </div> 
 
 
     </div>
-
+    <script src="RelojEventos.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/headroom.min.js"> </script>
     <script src="js/menu.js"></script>

@@ -78,5 +78,9 @@ a .portada{
     display: none;
 }
 #cuerpo_nuevo_pasajero{
-    display: none;
+    display: show;
 }
+hr {
+    height: 10px;
+    background-color: black;
+  }

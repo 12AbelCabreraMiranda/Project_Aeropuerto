@@ -1,3 +1,7 @@
+<?php 
+   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,7 +102,7 @@
                         </div>
                     </div>
                     
-                    <center><h3 id="titulo_avion_nuevo">Registrar Nuevo PASAJERO </h3></center> <br>
+                    <center><h3 id="titulo_avion_nuevo">Registrar Nuevo PASAJERO </h3></center> 
                     
                     <form action="index.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
                         <div class="form-group"><!--Agrupacion -->
@@ -114,7 +118,7 @@
                                 <div class="input-group tam_inp" >                       
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>             
                                     <input REQUIRED class="form-control" name="apellido" id="apellido"  type="text" placeholder="Ingresar Apellido">                               
-                                </div><br>
+                                </div>
                             </div> 
 
                             <div class="col-lg-6">
@@ -148,7 +152,7 @@
                                     <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Ingresar fecha" >
                                 </div>
                             </div>
-
+                               
                             <div class="col-lg-6">
                                 <label class="control-label ">DIRECCIÓN</label>
                                 <div class="input-group tam_inp">                       
@@ -156,10 +160,48 @@
                                     <input REQUIRED class="form-control"  name="direccion" id="direccion" type="text" placeholder="Dirección">                                
                                 </div>
                             </div>
+                            <div>
+                               ___________________________________________________
+                            </div>
                             
-                           
+                            <div class="col-md-6">
+                                <label class="control-label">SELECCIONAR PAÍS</label>
+                                <select name="elegir" class="form-control" >                                        
+                                    <option>USA</option>
+                                    <option>BRASIL</option>    
+                                    <option>ALAZKA</option>      
+                                    <option>JAPÓN</option>                                 
+                                </select> 
+                            </div>
 
-                            <div id="respuesta_regisrado_nuevo" ></div> <br>                            
+                            
+                            <div class="col-md-6">
+                                <label class="control-label">CLASE</label>
+                                <select name="elegir" class="form-control" >                                        
+                                    <option>A ($.1,200)</option>
+                                    <option>B ($.1,000)</option>  
+                                    <option>C ($   800)</option>
+                                </select> 
+                            </div>
+
+                            <div class="col-md-6" > 
+                                <label class="control-label">FECHA DE VIAJE</label>
+                                <div class="input-group tam_inp">                       
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>             
+                                    <input type="date" name="fecha_viaje" class="form-control" id="fecha_viaje" placeholder="Ingresar fecha" >
+                                </div>
+                            </div> 
+
+                            <div class="col-lg-6">
+                                <label class="control-label ">HORA DE VIAJE</label>
+                                <div class="input-group tam_inp">                       
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></div>             
+                                    <input REQUIRED class="form-control" name="hora_viaje" id="hora_viaje" type="text" placeholder=00:00">                                
+                                </div><br>
+                            </div> 
+                            
+
+                            <div style="margin-left:15px" id="respuesta_regisrado_nuevo" >respuesta_regisrado_nuevo</div>                          
 
                             <div id="botones_guardar">
                                 <div class="input-group-addon" style="cursor:pointer">   
@@ -178,7 +220,10 @@
                 </div>
             </div>
 
-        </div>  
+        </div> 
+
+
+
     </div>
 
     <script src="js/jquery-3.2.1.min.js"></script>

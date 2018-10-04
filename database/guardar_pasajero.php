@@ -54,7 +54,6 @@
                 //VALIDACION DE EXISTENCIA DE ALUMNO
                 if($row = $result2->fetch_assoc()){
                     $idPasajero =$row['idpasajero'];
-                    echo $idPasajero;
                 }
                 
 

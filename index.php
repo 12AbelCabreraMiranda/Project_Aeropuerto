@@ -236,7 +236,7 @@
 
                             <div id="botones_guardar">
                                 <div class="input-group-addon" style="cursor:pointer">   
-                                    <input type="submit" value="Save"  id="botonGuardarAvion" >                     
+                                    <input type="image" value="Save"  id="botonGuardarAvion" >                     
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                                 </div>
                             </div>                        

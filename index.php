@@ -1,6 +1,4 @@
-<?php 
-   
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +28,7 @@
                 <a href="#" onclick="inicio()"> <i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
                 <a href="#" onclick="acerca_de()"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Acerca de</a>
                 <a href="#" onclick="nuevo_pasajero()"> <i class="fa fa-users" aria-hidden="true"></i> Pasajeros</a>
-                <a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>
+                <!--<a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>-->
                 <a href="#" onclick="vuelos_registrados()"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a>                
             </div>
 
@@ -77,7 +75,7 @@
                     
                     <center><h3 id="titulo_avion_nuevo">Registrar Nuevo Avion </h3></center> <br>
                     
-                    <form action="index.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
+                    <form action="bd/guardar_avion.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
                         <div class="form-group"><!--Agrupacion -->
                             <label class="control-label ">TIPO DE AVIÓN:</label>
                             <div class="input-group tam_inp">                       
@@ -97,14 +95,19 @@
                                 <input REQUIRED class="form-control" name="destino_avion" id="destino_avion" type="text" placeholder="Ingresar Pais destino">                                
                             </div>
 
-                            <div id="respuesta_regisrado_nuevo" ></div> <br>                            
+                            <div id="respuesta_regisrado_nuevo_avion"></div> <br>      
 
-                            <div id="botones_guardar">
+                            
+
+
+                            <div id="botones_guardar" >
                                 <div class="input-group-addon" style="cursor:pointer">   
-                                    <input type="image" value="Save"  id="botonGuardarAvion" onclick="GuardarAvion()" >                     
+                                    <input type="image" value="Save"  id="botonGuardarAvion"  onclick="guardar_aviones()">                                              
+                                                         
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                                 </div>
-                            </div>                        
+                            </div> 
+
                         </div>
                     </form>
 
@@ -130,7 +133,7 @@
                     
                     <center><h3 id="titulo_avion_nuevo">Registrar Nuevo PASAJERO </h3></center> 
                     
-                    <form action="index.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
+                    <form action="bd/guardar_pasajero.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
                         <div class="form-group"><!--Agrupacion -->
                             <div class="col-lg-6">
                                 <label class="control-label ">NOMBRE</label>
@@ -192,21 +195,23 @@
                             
                             <div class="col-md-6">
                                 <label class="control-label">SELECCIONAR PAÍS</label>
-                                <select name="elegir" class="form-control" >                                        
+                                <select name="pais" class="form-control" >                                        
                                     <option>USA</option>
-                                    <option>BRASIL</option>    
-                                    <option>ALAZKA</option>      
-                                    <option>JAPÓN</option>                                 
+                                    <option>ALASKA</option>  
+                                    <option>MEXICO</option>                          
+                                    <option>BRASIL</option> 
+                                    <option>ARGENTINA</option> 
+                                    <option>JAPÓN</option> 
                                 </select> 
                             </div>
 
                             
                             <div class="col-md-6">
                                 <label class="control-label">CLASE</label>
-                                <select name="elegir" class="form-control" >                                        
-                                    <option>A ($.1,200)</option>
-                                    <option>B ($.1,000)</option>  
-                                    <option>C ($   800)</option>
+                                <select name="precio" class="form-control" >                                        
+                                    <option>A </option>
+                                    <option>B </option>  
+                                    <option>C </option>
                                 </select> 
                             </div>
 
@@ -222,16 +227,16 @@
                                 <label class="control-label ">HORA DE VIAJE</label>
                                 <div class="input-group tam_inp">                       
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></div>             
-                                    <input REQUIRED class="form-control" name="hora_viaje" id="hora_viaje" type="text" placeholder=00:00">                                
+                                    <input REQUIRED class="form-control" name="hora_viaje" id="hora_viaje" type="time" placeholder=00:00">                                
                                 </div><br>
                             </div> 
                             
 
-                            <div style="margin-left:15px" id="respuesta_regisrado_nuevo" >respuesta_regisrado_nuevo</div>                          
+                            <div style="margin-left:15px" id="respuesta_regisrado_nuevo" ></div>                          
 
                             <div id="botones_guardar">
                                 <div class="input-group-addon" style="cursor:pointer">   
-                                    <input type="image" value="Save"  id="botonGuardarAvion" onclick="GuardarAvion()" >                     
+                                    <input type="image" value="Save"  id="botonGuardarAvion" >                     
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                                 </div>
                             </div>                        
@@ -251,31 +256,10 @@
         <!--VUELOS REGISTRADOS -->
         <div class="col-lg-12" id="cuerpo_vuelos_registrados">
             <div class="row ">
-                <div class="col-lg-2" id="fondo_datos_registros">
-                    <div id="boton_cerrar" onclick="cerrar_new_avion()" >
-                        <div class="input-group-addon" style="cursor:pointer">
-                            <b> X </b> 
-                        </div>
-                    </div>
-                                        
-
-                    <div class="table-responsive scrollable " style="border-radius:5px" id="tabla_vocal">
-                        <table class="table table-striped table-bordered table-hover table-condensed">                        
-                            <tr class="success">
-                                <th style="text-align:center">AVIONES REGISTRADOS</th>                            
-                            </tr>
-                            <tr style="cursor:pointer"><td>A</td></tr>
-                            <tr><td>B</td></tr>
-                            <tr><td>C</td></tr>
-                            <tr><td>D</td></tr>
-                            <!-- CODIGO PHP-->
-                            
-                        </table>               
-                    </div>
-                </div>  
+                 
                   <!-- DATOS DE PASAJEROS REGISTRADOS EN EL AVION-->
                   <br>
-                <div class="col-lg-10" id="img_avion">
+                <div class="col-lg-12" id="img_avion">
                     <div class="table-responsive scrollable " style="border-radius:5px" id="tabla_vocal">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             
@@ -288,11 +272,47 @@
                                 <th style="text-align:center">FECHA NACIMIENTO</th>
                                 <th style="text-align:center">DIRECCION</th>
                                 <th style="text-align:center">VIAJAR A</th>
+                                <th style="text-align:center">VALOR</th>
+                                <th style="text-align:center">CLASE</th>
                                 <th style="text-align:center">FECHA DE VIAJE</th>
                                 <th style="text-align:center">HORA DE VIAJE</th>
 
                             </tr>
                             <!-- CODIGO PHP-->
+                            <?php
+   
+                                $serverName = 'localhost';
+                                $connectionInfo = array('Database'=>'avionera','UID'=>'sa','PWD'=>'dba', 'CharacterSet'=>'UTF-8');
+                                $con = sqlsrv_connect($serverName, $connectionInfo);
+
+                                
+                                    $query2 = sqlsrv_query ($con,"SELECT pasajero.nombre,pasajero.apellido,pasajero.tipo_doc,pasajero.numero_doc,
+                                                                         pasajero.telefono,pasajero.fecha_nac,pasajero.direccion,
+                                                                         pago.destino,pago.monto,pago.clase,pago.fecha_reserva,pago.hora_reserva
+                                                                  FROM pago
+                                                                  inner join pasajero on pasajero.idpasajero = pago.id_pasajero 
+                                                                  order by pago.clase asc  ");  
+                                    
+                                    while($row=sqlsrv_fetch_array($query2)){
+                                    ?>  
+                                        <tr style="background: #ffffff">
+                                            <td> <?php echo $row['nombre']; ?> </td>
+                                            <td> <?php echo $row['apellido']; ?> </td>
+                                            <td> <?php echo $row['tipo_doc']; ?> </td>                                
+                                            <td> <?php echo $row['numero_doc']; ?> </td>
+                                            <td> <?php echo $row['telefono']; ?> </td>
+                                            <td> <?php echo $row['fecha_nac']; ?> </td>
+                                            <td> <?php echo $row['direccion']; ?> </td>  
+                                            <td> <?php echo $row['destino']; ?> </td>
+                                            <td> <?php echo $row['monto']; ?> </td>
+                                            <td> <?php echo $row['clase']; ?> </td>
+                                            <td> <?php echo $row['fecha_reserva']; ?> </td> 
+                                            <td> <?php echo $row['hora_reserva']; ?> </td>                               
+                                            
+                                        </tr>
+                                    <?php      
+                                        }
+                                    ?>
                             
                         </table>
                     </div>
@@ -346,11 +366,10 @@
             </div>
 
         </div> 
-
-
     </div>
-    <script src="RelojEventos.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
+
+    <script src="RelojEventos.js"></script>    
+    <script src="js/jquery-3.2.1.js"></script>
     <script src="js/headroom.min.js"> </script>
     <script src="js/menu.js"></script>
     <script src="js/bootstrap.min.js" ></script>

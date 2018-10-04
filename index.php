@@ -133,7 +133,7 @@
                     
                     <center><h3 id="titulo_avion_nuevo">Registrar Nuevo PASAJERO </h3></center> 
                     
-                    <form action="bd/guardar_pasajero.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
+                    <form action="database/guardar_pasajero.php" class="form-horizontal nombres_labels" method="POST" id="form_new_Pasajero" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
                         <div class="form-group"><!--Agrupacion -->
                             <div class="col-lg-6">
                                 <label class="control-label ">NOMBRE</label>
@@ -236,7 +236,7 @@
 
                             <div id="botones_guardar">
                                 <div class="input-group-addon" style="cursor:pointer">   
-                                    <input type="image" value="Save"  id="botonGuardarAvion" >                     
+                                    <input type="submit" value="Save"  id="botonGuardarAvion" >                     
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                                 </div>
                             </div>                        
@@ -281,38 +281,36 @@
                             <!-- CODIGO PHP-->
                             <?php
    
-                                $serverName = 'localhost';
-                                $connectionInfo = array('Database'=>'avionera','UID'=>'sa','PWD'=>'dba', 'CharacterSet'=>'UTF-8');
-                                $con = sqlsrv_connect($serverName, $connectionInfo);
-
+                            include("database/conexion.php");
                                 
-                                    $query2 = sqlsrv_query ($con,"SELECT pasajero.nombre,pasajero.apellido,pasajero.tipo_doc,pasajero.numero_doc,
-                                                                         pasajero.telefono,pasajero.fecha_nac,pasajero.direccion,
-                                                                         pago.destino,pago.monto,pago.clase,pago.fecha_reserva,pago.hora_reserva
-                                                                  FROM pago
-                                                                  inner join pasajero on pasajero.idpasajero = pago.id_pasajero 
-                                                                  order by pago.clase asc  ");  
+                            $consulta = "SELECT pasajero.nombre,pasajero.apellido,pasajero.tipo_documento,pasajero.num_documento,
+                                                                    pasajero.telefono,pasajero.fecha_nacimiento,pasajero.direccion,
+                                                                    pago.destino,pago.monto,pago.clase,pago.fecha_reserva,pago.hora_reserva
+                                                            FROM pago
+                                                            inner join pasajero on pasajero.idpasajero = pago.idpasajero_p
+                                                            order by pago.clase asc  ";  
+                            
+                            $resultado = $conexion->query($consulta);
+                            while($row =  $resultado->fetch_assoc()){
+                            ?>  
+                                <tr style="background: #ffffff">
+                                    <td> <?php echo $row['nombre']; ?> </td>
+                                    <td> <?php echo $row['apellido']; ?> </td>
+                                    <td> <?php echo $row['tipo_documento']; ?> </td>                                
+                                    <td> <?php echo $row['num_documento']; ?> </td>
+                                    <td> <?php echo $row['telefono']; ?> </td>
+                                    <td> <?php echo $row['fecha_nacimiento']; ?> </td>
+                                    <td> <?php echo $row['direccion']; ?> </td>  
+                                    <td> <?php echo $row['destino']; ?> </td>
+                                    <td> <?php echo $row['monto']; ?> </td>
+                                    <td> <?php echo $row['clase']; ?> </td>
+                                    <td> <?php echo $row['fecha_reserva']; ?> </td> 
+                                    <td> <?php echo $row['hora_reserva']; ?> </td>                               
                                     
-                                    while($row=sqlsrv_fetch_array($query2)){
-                                    ?>  
-                                        <tr style="background: #ffffff">
-                                            <td> <?php echo $row['nombre']; ?> </td>
-                                            <td> <?php echo $row['apellido']; ?> </td>
-                                            <td> <?php echo $row['tipo_doc']; ?> </td>                                
-                                            <td> <?php echo $row['numero_doc']; ?> </td>
-                                            <td> <?php echo $row['telefono']; ?> </td>
-                                            <td> <?php echo $row['fecha_nac']; ?> </td>
-                                            <td> <?php echo $row['direccion']; ?> </td>  
-                                            <td> <?php echo $row['destino']; ?> </td>
-                                            <td> <?php echo $row['monto']; ?> </td>
-                                            <td> <?php echo $row['clase']; ?> </td>
-                                            <td> <?php echo $row['fecha_reserva']; ?> </td> 
-                                            <td> <?php echo $row['hora_reserva']; ?> </td>                               
-                                            
-                                        </tr>
-                                    <?php      
-                                        }
-                                    ?>
+                                </tr>
+                            <?php      
+                                }
+                            ?>
                             
                         </table>
                     </div>

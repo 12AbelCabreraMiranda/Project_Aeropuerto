@@ -18,6 +18,13 @@ body{
     background: rgba(0, 0, 0, 0.459);
     height: 520px;
 }
+#cuerpo_nuevo_vuelo{
+    position: static;
+    margin-top: 76px;
+    background: rgba(0, 0, 0, 0.459);
+    height: 520px;
+    display: none;
+}
 #cuerpo_vuelos_registrados{
     position: static;
     margin-top: 76px;

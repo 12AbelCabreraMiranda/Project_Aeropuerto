@@ -1,4 +1,11 @@
+<?php
+    include("database/conexion.php");
+    $query = "select idavion, tipo from avion";
+    $resultado = $conexion->query($query);
 
+    $query2 = "select idpais_destino, nombre_pais from pais_destino order by nombre_pais asc";
+    $resultado2 = $conexion->query($query2);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +34,9 @@
             <div class="enlaces" id="enlaces">
                 <a href="#" onclick="inicio()"> <i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
                 <a href="#" onclick="acerca_de()"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Acerca de</a>
-                <a href="#" onclick="vuelos_disponibles()"> <i class="fa fa-plane" aria-hidden="true"></i> Vuelos Disponibles</a>
+                <a href="#" onclick="registrar_vuelos()"> <i class="fa fa-plane" aria-hidden="true"></i> Registrar Vuelos</a>
                 <!--<a href="#" onclick="nuevo_pasajero()"> <i class="fa fa-users" aria-hidden="true"></i> Pasajeros</a> -->
-                <!--<a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>-->
+                <a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>
                 <a href="#" onclick="vuelos_registrados()"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a>                
             </div>
 
@@ -76,7 +83,7 @@
                     
                     <center><h3 id="titulo_avion_nuevo">Registrar Nuevo Avion </h3></center> <br>
                     
-                    <form action="bd/guardar_avion.php" class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
+                    <form  class="form-horizontal nombres_labels" method="POST" id="form_new_avion" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
                         <div class="form-group"><!--Agrupacion -->
                             <label class="control-label ">TIPO DE AVIÓN:</label>
                             <div class="input-group tam_inp">                       
@@ -90,20 +97,11 @@
                                 <input REQUIRED class="form-control" min="1" name="capcidad_avion" id="capcidad_avion" type="number" placeholder="0000">                                
                             </div><br>
 
-                            <label class="control-label ">DESTINO DE VIAJES</label>
-                            <div class="input-group">                       
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></div>             
-                                <input REQUIRED class="form-control" name="destino_avion" id="destino_avion" type="text" placeholder="Ingresar Pais destino">                                
-                            </div>
-
-                            <div id="respuesta_regisrado_nuevo_avion"></div> <br>      
-
-                            
-
+                            <div id="respuesta_regisrado_nuevo_avion"></div> <br>                                  
 
                             <div id="botones_guardar" >
                                 <div class="input-group-addon" style="cursor:pointer">   
-                                    <input type="image" value="Save"  id="botonGuardarAvion"  onclick="guardar_aviones()">                                              
+                                    <input type="image" value="Save"  id="botonGuardarAvion"   onclick="guardar_aviones()">                                              
                                                          
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                                 </div>
@@ -123,6 +121,7 @@
         </div>      
         
         <!--GUARDAR NUEVO PASAJEROS -->
+        <!--
         <div class="col-lg-12" id="cuerpo_nuevo_pasajero">
             <div class="row ">
                 <div class="col-lg-4" id="fondo_datos_registros">
@@ -134,8 +133,8 @@
                     
                     <center><h3 id="titulo_avion_nuevo">Registrar Nuevo PASAJERO </h3></center> 
                     
-                    <form action="database/guardar_pasajero.php" class="form-horizontal nombres_labels" method="POST" id="form_new_Pasajero" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
-                        <div class="form-group"><!--Agrupacion -->
+                    <form action="database/guardar_pasajero.php" class="form-horizontal nombres_labels" method="POST" id="form_new_Pasajero" enctype="multipart/form-data" >
+                        <div class="form-group">
                             <div class="col-lg-6">
                                 <label class="control-label ">NOMBRE</label>
                                 <div class="input-group tam_inp" >                       
@@ -252,6 +251,82 @@
                 </div>
             </div>
 
+        </div> -->
+
+        <!--GUARDAR NUEVO VUELO DE AVION -->
+        <div class="col-lg-12" id="cuerpo_nuevo_vuelo">
+            <div class="row ">
+                <div class="col-lg-4" id="fondo_datos_registros">
+                    <div id="boton_cerrar" onclick="cerrar_new_pasajero()" >
+                        <div class="input-group-addon" style="cursor:pointer">
+                            <b> X </b> 
+                        </div>
+                    </div>
+                    
+                    <center><h3 id="titulo_avion_nuevo">Registrar Nuevo VUELO DE AVION </h3></center> 
+                    
+                    <form action="index.php" class="form-horizontal nombres_labels" method="POST" id="form_new_vuelo" enctype="multipart/form-data" ><!--Permite dar saltos de espacios entre filas -->
+                        <div class="form-group"><!--Agrupacion -->    
+
+                                
+                                <div class="col-lg-6" style="color:black"> <br>
+                                    <label class="control-label " style="color:white">SELECCIONAR AVIÓN</label>
+                                    <select name="avion" class="form-control"  id="id_avion">
+                                        <?php while($row = $resultado->fetch_assoc()){  ?>
+                                            <option value="<?php echo $row['idavion']; ?> ">
+                                                <?php  echo $row['tipo']; ?>                                             
+                                            </option>
+                                        <?php }?>
+                                    </select> 
+                                </div>   
+                            
+                                <div class="col-lg-6" style="color:black">     <br>                                    
+                                    <label class="control-label " style="color:white">SELECCIONAR PAIS</label>
+                                    <select name="pais" class="form-control"  id="id_pais">
+                                        <?php while($row = $resultado2->fetch_assoc()){  ?>
+                                            <option value="<?php echo $row['idpais_destino']; ?> ">
+                                                <?php  echo $row['nombre_pais']; ?>                                             
+                                            </option>
+                                        <?php }?>
+                                    </select> 
+                                </div>  
+
+                            <div class="col-md-6" > <br>
+                                <label class="control-label">FECHA DE VIAJE</label>
+                                <div class="input-group tam_inp">                       
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>             
+                                    <input type="date" name="fecha_viaje" class="form-control" id="fecha_viaje" placeholder="Ingresar fecha" >
+                                </div>
+                            </div> 
+
+                            <div class="col-lg-6"> <br>
+                                <label class="control-label ">HORA DE VIAJE</label>
+                                <div class="input-group tam_inp">                       
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></div>             
+                                    <input REQUIRED class="form-control" name="hora_viaje" id="hora_viaje" type="time" placeholder=00:00">                                
+                                </div><br>
+                            </div> 
+                            
+
+                                                     
+
+                            <div id="botones_guardar">
+                                <div class="input-group-addon" style="cursor:pointer">   
+                                    <input type="image" value="Save"  id="botonGuardarAvion" onclick="nuevo_vuelo()">                     
+                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                                </div>
+                            </div>                        
+                        </div>
+                    </form>
+                    <div style="margin-left:15px" id="respuesta_nuevo_vueloR" ></div>                            
+                    
+                </div>
+
+                <div class="col-lg-8 col-xs-12 porta">
+                    <a href="#"> <img class="img-responsive img-rounded portada" src="img/registrando.jpeg" > </a>
+                </div>
+            </div>
+
         </div> 
 
         <!--VUELOS REGISTRADOS -->
@@ -259,24 +334,23 @@
             <div class="row ">
                  
                   <!-- DATOS DE PASAJEROS REGISTRADOS EN EL AVION-->
-                  <br>
+                  
                 <div class="col-lg-12" id="img_avion">
+                    <div id="boton_cerrar" onclick="cerrar_new_avion()" >
+                        <div class="input-group-addon" style="cursor:pointer">
+                            <b> X </b> 
+                        </div>
+                    </div>
                     <div class="table-responsive scrollable " style="border-radius:5px" id="tabla_vocal">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             
                             <tr class="success">                                
-                                <th style="text-align:center">NOMBRE</th>
-                                <th style="text-align:center">APELLIDO</th>                            
-                                <th style="text-align:center">DOCUMENTO</th>
-                                <th style="text-align:center">No. DOCUMENTO</th>
-                                <th style="text-align:center">TELEFONO</th>
-                                <th style="text-align:center">FECHA NACIMIENTO</th>
-                                <th style="text-align:center">DIRECCION</th>
-                                <th style="text-align:center">VIAJAR A</th>
-                                <th style="text-align:center">VALOR</th>
-                                <th style="text-align:center">CLASE</th>
-                                <th style="text-align:center">FECHA DE VIAJE</th>
-                                <th style="text-align:center">HORA DE VIAJE</th>
+                                <th style="text-align:center">tipo</th>
+                                <th style="text-align:center">capacidad_pasajero</th>                            
+                                <th style="text-align:center">nombre_pais</th>
+                                <th style="text-align:center">valor</th>
+                                <th style="text-align:center">Fecha_de_vuelo</th>
+                                <th style="text-align:center">hora_de_vuelo</th>                      
 
                             </tr>
                             <!-- CODIGO PHP-->
@@ -284,30 +358,25 @@
    
                             include("database/conexion.php");
                                 
-                            $consulta = "SELECT pasajero.nombre,pasajero.apellido,pasajero.tipo_documento,pasajero.num_documento,
-                                                                    pasajero.telefono,pasajero.fecha_nacimiento,pasajero.direccion,
-                                                                    pago.destino,pago.monto,pago.clase,pago.fecha_reserva,pago.hora_reserva
-                                                            FROM pago
-                                                            inner join pasajero on pasajero.idpasajero = pago.idpasajero_p
-                                                            order by pago.clase asc  ";  
+                            $consulta = "select avion.tipo,avion.capacidad_pasajero, pais_destino.nombre_pais,pais_destino.valor,  
+                                        vuelo.Fecha_de_vuelo,vuelo.hora_de_vuelo
+    
+                                            from vuelo
+                                            inner join avion on avion.idavion = vuelo.avion_id
+                                            inner join pais_destino on pais_destino.idpais_destino = vuelo.pais_id  
+                                            
+                                            order by pais_destino.nombre_pais asc ";  
                             
                             $resultado = $conexion->query($consulta);
                             while($row =  $resultado->fetch_assoc()){
                             ?>  
                                 <tr style="background: #ffffff">
-                                    <td> <?php echo $row['nombre']; ?> </td>
-                                    <td> <?php echo $row['apellido']; ?> </td>
-                                    <td> <?php echo $row['tipo_documento']; ?> </td>                                
-                                    <td> <?php echo $row['num_documento']; ?> </td>
-                                    <td> <?php echo $row['telefono']; ?> </td>
-                                    <td> <?php echo $row['fecha_nacimiento']; ?> </td>
-                                    <td> <?php echo $row['direccion']; ?> </td>  
-                                    <td> <?php echo $row['destino']; ?> </td>
-                                    <td> <?php echo $row['monto']; ?> </td>
-                                    <td> <?php echo $row['clase']; ?> </td>
-                                    <td> <?php echo $row['fecha_reserva']; ?> </td> 
-                                    <td> <?php echo $row['hora_reserva']; ?> </td>                               
-                                    
+                                    <td> <?php echo $row['tipo']; ?> </td>
+                                    <td> <?php echo $row['capacidad_pasajero']; ?> </td>                                                                  
+                                    <td> <?php echo $row['nombre_pais']; ?> </td>
+                                    <td> <?php echo $row['valor']; ?> </td>
+                                    <td> <?php echo $row['Fecha_de_vuelo']; ?> </td>
+                                    <td> <?php echo $row['hora_de_vuelo']; ?> </td>                                                                   
                                 </tr>
                             <?php      
                                 }
@@ -373,6 +442,8 @@
     <script src="js/menu.js"></script>
     <script src="js/bootstrap.min.js" ></script>
     <script src="js/mostrar_ocultar.js"></script>
+    <script src="guardar_avion.js"></script>
+    <script src="database/guardar_vuelo.js"></script>
     
 </body>
 </html>

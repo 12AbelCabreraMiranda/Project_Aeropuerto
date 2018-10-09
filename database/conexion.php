@@ -1,4 +1,4 @@
 <?php 
-$conexion = new mysqli("localhost","root","","avion");
+$conexion = new mysqli("localhost","root","","aeropuerto");
 
 ?>

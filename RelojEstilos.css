@@ -1,109 +1,115 @@
-*{
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+@media (min-width:1200px){
+
+    *{
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .wrap{
+        width: 90%;
+        max-width: 1000px;
+    }
+    .widget{
+        width: 40%;
+        margin: 2em; /*Es equivalente a 32px*/
+    }
+    .widget p{
+        display: inline-block;
+        line-height: 1em;
+    }
+    .fecha{
+        font-family: 'Oswald', Arial;
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 0.3125rem;/*equivalente a 5px*/
+        background: rgba(3, 247, 186, 0.781);
+        padding: 20px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .reloj{
+        font-family: 'Oswald', Arial;
+        width: 100%;
+        padding: 20px;
+        font-size: 4em;
+        text-align: center;
+        background: rgba(247, 243, 6, 0.795);
+        border-radius: 8px;
+    }
+    .reloj .caja-segundos{
+        display: inline-block;
+    }
+    .reloj .segundos, .reloj .ampm{
+        font-size: 2rem;
+        display: block;
+    }
+    
+    
 }
 
-.wrap{
-    width: 90%;
-    max-width: 1000px;
-}
-.widget{
-    width: 40%;
-    margin: 2em; /*Es equivalente a 32px*/
-}
-.widget p{
-    display: inline-block;
-    line-height: 1em;
-}
-.fecha{
-    font-family: 'Oswald', Arial;
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 0.3125rem;/*equivalente a 5px*/
-    background: rgba(3, 247, 186, 0.781);
-    padding: 20px;
-    width: 100%;
-    border-radius: 8px;
-}
-.reloj{
-    font-family: 'Oswald', Arial;
-    width: 100%;
-    padding: 20px;
-    font-size: 4em;
-    text-align: center;
-    background: rgba(247, 243, 6, 0.795);
-    border-radius: 8px;
-}
-.reloj .caja-segundos{
-    display: inline-block;
-}
-.reloj .segundos, .reloj .ampm{
-    font-size: 2rem;
-    display: block;
-}
-.footer{
-    background-color: rgba(26, 25, 25, 0.575);  
-    color: white;
-    clear:both;
-    margin-top: 200px ;/*separacion entre arriba*/
-    margin-bottom: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    /*width:100%;*/
-    text-align: center;
-    border-radius: 5px;
-  }
-  .footer2{
-      padding: 10px;/*tamaño de fondo del footer*/
-
-  }
-  /*Estilos de Blog Internet*/
-
-.encabezadoMenu .navbar{
-    background: #0000009f;
-    color: #FFF;
-}
-.navbar{
-    margin-bottom: 0;
-}
-.dropdown-menu{
-    background-color: rgba(247, 6, 66, 0.651);
-    color: white;
-}
-.dropdown-menu li a{
-    color: white;
-}
-.asides{
-    float: right;
-}
-.list-group-item{
-    background-color: rgba(250, 7, 80, 0.575);
+/* Medium Desktop*/
+@media (max-width: 1199px) and (min-width: 1023px){
+  
 
 }
-aside .catAside{
-    color: #000;
-    background-color: rgba(255, 255, 255, 0.89);
-    padding: 5px;
-    border-radius: 8px;
-    text-align: center;
-}
-aside .list-group a{
-    color: white;
-}
-aside .pRecientes{
-    color: rgb(0, 0, 0);
-    background-color: rgba(255, 255, 255, 0.89);
-    padding: 5px;
-    border-radius: 8px;
-    text-align: center;
+
+/* Tablets*/
+@media (max-width: 1024px) and (min-width: 768px){
+   
 }
 
-aside a p{
-    color: white;
-}
-.asides{
-    margin-bottom: 10px;
+/* Phones*/
+@media (max-width: 767px){
+    
+    *{
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .wrap{
+        width: 90%;
+        max-width: 1000px;
+    }
+    .widget{
+        width: 100%;
+        margin: 2em; /*Es equivalente a 32px*/
+    }
+    .widget p{
+        display: inline-block;
+        line-height: 1em;
+    }
+    .fecha{
+        font-family: 'Oswald', Arial;
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 0.3125rem;/*equivalente a 5px*/
+        background: rgba(3, 247, 186, 0.781);
+        padding: 10px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .reloj{
+        font-family: 'Oswald', Arial;
+        width: 100%;
+        padding: 10px;
+        font-size: 4em;
+        text-align: center;
+        background: rgba(247, 243, 6, 0.795);
+        border-radius: 8px;
+    }
+    .reloj .caja-segundos{
+        display: inline-block;
+    }
+    .reloj .segundos, .reloj .ampm{
+        font-size: 2rem;
+        display: block;
+    }
+   
+       
 }

@@ -27,7 +27,8 @@
             <div class="enlaces" id="enlaces">
                 <a href="#" onclick="inicio()"> <i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
                 <a href="#" onclick="acerca_de()"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Acerca de</a>
-                <a href="#" onclick="nuevo_pasajero()"> <i class="fa fa-users" aria-hidden="true"></i> Pasajeros</a>
+                <a href="#" onclick="vuelos_disponibles()"> <i class="fa fa-plane" aria-hidden="true"></i> Vuelos Disponibles</a>
+                <!--<a href="#" onclick="nuevo_pasajero()"> <i class="fa fa-users" aria-hidden="true"></i> Pasajeros</a> -->
                 <!--<a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>-->
                 <a href="#" onclick="vuelos_registrados()"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a>                
             </div>

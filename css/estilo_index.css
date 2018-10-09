@@ -31,6 +31,16 @@ body{
     height: 520px;
     display: none;
 }
+
+#vuelos_dispo{
+    position: static;
+    margin-top: 76px;
+    background: rgba(27, 9, 13, 0.856);
+    display: none;
+
+}
+
+
 #titulo_avion_nuevo{
     color: white;
     font-weight: bold;

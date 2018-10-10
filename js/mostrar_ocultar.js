@@ -5,6 +5,7 @@ function inicio(){
     $('#cuerpo_vuelos_registrados').hide();
     $('.wrap').show();
     $('#cuerpo_nuevo_vuelo').hide();//
+    $('#vuelos_dispo').hide();
 }
 
 function cerrar_new_avion(){
@@ -13,6 +14,7 @@ function cerrar_new_avion(){
     $('#acerca_de').hide();
     $('.wrap').show();
     $('#cuerpo_nuevo_vuelo').hide();//
+    $('#vuelos_dispo').hide();
 }
 
 function nuevo_avion(){
@@ -54,6 +56,7 @@ function acerca_de(){
     $('#acerca_de').show();
     $('.wrap').hide();
     $('#cuerpo_nuevo_vuelo').hide();//
+    $('#vuelos_dispo').hide();
 }
 
 function registrar_vuelos(){
@@ -63,5 +66,15 @@ function registrar_vuelos(){
     $('#acerca_de').hide();
     $('.wrap').hide();
     $('#cuerpo_nuevo_vuelo').show();
+
+}
+
+function vuelos_disponibles(){
+    $('#cuerpo_vuelos_registrados').hide();
+    $('#cuerpo_nuevo_pasajero').hide();
+    $('#cuerpo_nuevo_avion').hide();
+    $('#acerca_de').hide();
+    $('.wrap').hide();
+    $('#vuelos_dispo').show();
 
 }

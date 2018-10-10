@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="RelojEstilos.css">
 </head>
 <body>
+    <!--PERMITE REDIRECCIONARLO AL LOGIN SI NO HAY SESION INICIADA -->
+    <?php // AGREGARLO EN LAS DEMAS PAGINAS PARA QUE LOS QUE ESTEN CON SESION INICIADO PUEDAN ACCEDER ELSE NOT ACCESS
+      session_start();
+        if(isset($_SESSION['u_usuario'])){
+        }else{
+            header("Location: loginParcial2/Login.php");
+        }
+    ?>
+    <!--PERMITE REDIRECCIONARLO AL LOGIN SI NO HAY SESION INICIADA -->
+
     <header id="header">
         <nav class="menu">
             <div class="logo">
@@ -37,7 +47,8 @@
                 <a href="#" onclick="registrar_vuelos()"> <i class="fa fa-plane" aria-hidden="true"></i> Registrar Vuelos</a>
                 <!--<a href="#" onclick="nuevo_pasajero()"> <i class="fa fa-users" aria-hidden="true"></i> Pasajeros</a> -->
                 <a href="#" onclick="nuevo_avion()"> <i class="fa fa-plane" aria-hidden="true" ></i>Avión</a>
-                <a href="#" onclick="vuelos_registrados()"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a>                
+                <a href="#" onclick="vuelos_registrados()"> <i class="fa fa-ticket" aria-hidden="true"></i> Vuelos Registrados</a> 
+                <a href="loginParcial2/cerrar_sesion.php"> <i class="fa fa-close" aria-hidden="true"></i> Salir</a>                
             </div>
 
         </nav>
@@ -257,7 +268,7 @@
         <div class="col-lg-12" id="cuerpo_nuevo_vuelo">
             <div class="row ">
                 <div class="col-lg-4" id="fondo_datos_registros">
-                    <div id="boton_cerrar" onclick="cerrar_new_pasajero()" >
+                    <div id="boton_cerrar" onclick="cerrar_new_avion()" >
                         <div class="input-group-addon" style="cursor:pointer">
                             <b> X </b> 
                         </div>
@@ -269,27 +280,27 @@
                         <div class="form-group"><!--Agrupacion -->    
 
                                 
-                                <div class="col-lg-6" style="color:black"> <br>
-                                    <label class="control-label " style="color:white">SELECCIONAR AVIÓN</label>
-                                    <select name="avion" class="form-control"  id="id_avion">
-                                        <?php while($row = $resultado->fetch_assoc()){  ?>
-                                            <option value="<?php echo $row['idavion']; ?> ">
-                                                <?php  echo $row['tipo']; ?>                                             
-                                            </option>
-                                        <?php }?>
-                                    </select> 
-                                </div>   
-                            
-                                <div class="col-lg-6" style="color:black">     <br>                                    
-                                    <label class="control-label " style="color:white">SELECCIONAR PAIS</label>
-                                    <select name="pais" class="form-control"  id="id_pais">
-                                        <?php while($row = $resultado2->fetch_assoc()){  ?>
-                                            <option value="<?php echo $row['idpais_destino']; ?> ">
-                                                <?php  echo $row['nombre_pais']; ?>                                             
-                                            </option>
-                                        <?php }?>
-                                    </select> 
-                                </div>  
+                            <div class="col-lg-6" style="color:black"> <br>
+                                <label class="control-label " style="color:white">SELECCIONAR AVIÓN</label>
+                                <select name="avion" class="form-control"  id="id_avion">
+                                    <?php while($row = $resultado->fetch_assoc()){  ?>
+                                        <option value="<?php echo $row['idavion']; ?> ">
+                                            <?php  echo $row['tipo']; ?>                                             
+                                        </option>
+                                    <?php }?>
+                                </select> 
+                            </div>   
+                        
+                            <div class="col-lg-6" style="color:black">     <br>                                    
+                                <label class="control-label " style="color:white">SELECCIONAR PAIS</label>
+                                <select name="pais" class="form-control"  id="id_pais">
+                                    <?php while($row = $resultado2->fetch_assoc()){  ?>
+                                        <option value="<?php echo $row['idpais_destino']; ?> ">
+                                            <?php  echo $row['nombre_pais']; ?>                                             
+                                        </option>
+                                    <?php }?>
+                                </select> 
+                            </div>  
 
                             <div class="col-md-6" > <br>
                                 <label class="control-label">FECHA DE VIAJE</label>
@@ -305,17 +316,15 @@
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></div>             
                                     <input REQUIRED class="form-control" name="hora_viaje" id="hora_viaje" type="time" placeholder=00:00">                                
                                 </div><br>
-                            </div> 
-                            
-
+                            </div>                             
                                                      
-
-                            <div id="botones_guardar">
+                            <div id="botones_guardar_vuelo">
                                 <div class="input-group-addon" style="cursor:pointer">   
                                     <input type="image" value="Save"  id="botonGuardarAvion" onclick="nuevo_vuelo()">                     
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                                 </div>
-                            </div>                        
+                            </div> 
+
                         </div>
                     </form>
                     <div style="margin-left:15px" id="respuesta_nuevo_vueloR" ></div>                            
@@ -336,7 +345,7 @@
                   <!-- DATOS DE PASAJEROS REGISTRADOS EN EL AVION-->
                   
                 <div class="col-lg-12" id="img_avion">
-                    <div id="boton_cerrar" onclick="cerrar_new_avion()" >
+                    <div id="boton_cerrar_registrados" onclick="cerrar_new_avion()" >
                         <div class="input-group-addon" style="cursor:pointer">
                             <b> X </b> 
                         </div>

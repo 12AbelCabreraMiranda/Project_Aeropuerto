@@ -73,7 +73,25 @@ form{
     display: inline-block;
     position:absolute; z-index:1; /*PERMITE COLOCAR ENCIMA*/
 }
+#botones_guardar_vuelo{
+    left: 27px;
+    top: 0;
+    margin: auto;
+    height: 30px;
+    margin-left: 17px;
+    width: 40px;
+    display: inline-block;
+    position:absolute; z-index:0; /*PERMITE COLOCAR ENCIMA*/
+}
 #boton_cerrar{
+    background: rgb(253, 253, 253);
+    height: 30px;
+    margin-left: -15px;
+    width: 40px;
+    display: inline-block;
+}
+#boton_cerrar_registrados{
+    margin-top: -8px;
     background: rgb(253, 253, 253);
     height: 30px;
     margin-left: -15px;
